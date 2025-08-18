@@ -1,0 +1,15 @@
+{
+  "name": "Homely MQTT",
+  "version": "1.0.0",
+  "slug": "homely_mqtt",
+  "description": "Homely MQTT add-on for Home Assistant",
+  "arch": ["amd64", "armv7", "aarch64"],
+  "startup": "application",
+  "boot": "auto",
+  "ports": {
+    "1883/tcp": 1883
+  },
+  "map": ["config"],
+  "options": {},
+  "schema": {}
+}
