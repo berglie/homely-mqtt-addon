@@ -1,7 +1,5 @@
-# Bruk full Debian image med Node 20 (ikke slim)
-FROM node:20-bullseye
+FROM node:18-bullseye
 
-# Installer byggverktøy og python
 RUN apt-get update && apt-get install -y \
     git \
     python3 \
@@ -16,15 +14,13 @@ RUN apt-get update && apt-get install -y \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/*
 
-# Oppdater npm til nyeste versjon
-RUN npm install -g npm@11.5.2
+RUN npm install -g npm@9
 
-# Lag midlertidig mappe og installer homely-mqtt der
+# Installer homely-mqtt lokalt og link
 RUN mkdir -p /tmp/homely && cd /tmp/homely \
     && npm install git+https://github.com/yusijs/homely-mqtt.git \
     && npm link
 
-# Eksponer MQTT port
 EXPOSE 1883
 
 CMD ["homely-mqtt"]
