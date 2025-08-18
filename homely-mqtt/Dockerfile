@@ -1,7 +1,7 @@
-FROM node:18-alpine
+FROM node:18-bullseye-slim
 
-# Installer git og bash
-RUN apk add --no-cache git bash
+# Installer git
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 # Installer homely-mqtt fra GitHub
 RUN npm install -g git+https://github.com/yusijs/homely-mqtt.git
