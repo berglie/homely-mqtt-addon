@@ -1,6 +1,6 @@
 {
   "name": "Homely MQTT",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "slug": "homely_mqtt",
   "description": "Homely MQTT add-on for Home Assistant",
   "arch": ["amd64", "armv7", "aarch64"],
