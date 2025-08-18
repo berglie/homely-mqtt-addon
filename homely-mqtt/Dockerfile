@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim
+FROM node:18-buster-slim
 
 # Installer git
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
