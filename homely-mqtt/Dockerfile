@@ -27,7 +27,7 @@ WORKDIR /tmp/homely
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV HOMELY_MQTT_VERSION=1.0.16
+ENV HOMELY_MQTT_VERSION=1.0.18
 
 # Expose MQTT port
 EXPOSE 1883
