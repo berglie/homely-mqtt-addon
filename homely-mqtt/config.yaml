@@ -1,5 +1,5 @@
 ---
-version: 2.0.0
+version: 2.0.1
 slug: homely_mqtt
 name: Homely MQTT
 description: MQTT add-on for Home Assistant using homely-mqtt

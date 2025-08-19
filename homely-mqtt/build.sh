@@ -22,7 +22,7 @@ for arch in "${architectures[@]}"; do
     # Build the image
     docker build \
         --build-arg BUILD_FROM=ghcr.io/home-assistant/${arch}-base:3.19 \
-        --tag local/${arch}-addon-homely-mqtt:2.0.0 \
+        --tag local/${arch}-addon-homely-mqtt:2.0.1 \
         --file Dockerfile \
         .
     
