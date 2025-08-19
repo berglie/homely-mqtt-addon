@@ -5,7 +5,9 @@
 
 set -e
 
-# Set default values if not provided
+# Read configuration from add-on options
+# Home Assistant automatically maps options to environment variables
+# If environment variables are not set, use defaults from config.json
 export MQTT_BROKER_HOST=${MQTT_BROKER_HOST:-"localhost"}
 export MQTT_BROKER_PORT=${MQTT_BROKER_PORT:-1883}
 export MQTT_USERNAME=${MQTT_USERNAME:-""}
@@ -18,8 +20,8 @@ export DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-"homeassistant"}
 
 # Map addon environment variables to what the source code expects
 export MQTT_HOST="mqtt://${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}"
-export HOMELY_USER=${HOMELY_USER:-"your_homely_username"}
-export HOMELY_PASSWORD=${HOMELY_PASSWORD:-"your_homely_password"}
+export HOMELY_USER=${HOMELY_USER:-""}
+export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
 
 # Log configuration
 echo "Starting Homely MQTT Add-on with configuration:"
