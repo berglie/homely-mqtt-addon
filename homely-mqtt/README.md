@@ -1,10 +1,10 @@
 # Homely MQTT Add-on for Home Assistant
 
-**Version: 1.1.0** - Now with Enhanced Auto-Discovery! 🚀
+**Version: 1.1.1** - Fixed Auto-Discovery Issues! 🚀
 
 A Home Assistant add-on that bridges Homely security systems with MQTT, enabling seamless integration with Home Assistant and other smart home platforms.
 
-## ✨ New in Version 1.1.0
+## ✨ New in Version 1.1.1
 
 ### 🎯 **Enhanced Auto-Discovery**
 - **Zero Configuration Required**: Devices automatically appear in Home Assistant
@@ -142,6 +142,13 @@ docker build -t homely-mqtt-addon .
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Changelog
+
+### Version 1.1.1
+- 🐛 Fixed MQTT auto-discovery not working due to configuration conflicts
+- 🔧 Updated configuration to prioritize environment variables
+- 📦 Fixed missing source code due to uninitialized git submodule
+- 🚀 Forced MQTT enabled when running as Home Assistant addon
+- 📊 Improved environment variable handling for MQTT settings
 
 ### Version 1.1.0
 - ✨ Added enhanced MQTT Device Discovery
