@@ -29,8 +29,10 @@ if [ -f "/data/options.json" ]; then
         export INCLUDE_AVAILABILITY=$(jq -r '.include_availability // "true"' /data/options.json)
         export RETAIN_DISCOVERY=$(jq -r '.retain_discovery // "true"' /data/options.json)
         export DISCOVERY_DELAY=$(jq -r '.discovery_delay // 500' /data/options.json)
-        export HOMELY_USER=$(jq -r '.homely_user // ""' /data/options.json)
         export HOMELY_PASSWORD=$(jq -r '.homely_password // ""' /data/options.json)
+        export HOMELY_USER=$(jq -r '.homely_user // ""' /data/options.json)
+        # Force MQTT to be enabled when using the addon
+        export MQTT_ENABLED="true"
     else
         echo "WARNING: jq not available, using fallback method..."
         # Fallback: try to read from environment variables (Home Assistant might set these)
@@ -50,6 +52,8 @@ if [ -f "/data/options.json" ]; then
         export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
         export HOMELY_USER=${HOMELY_USER:-""}
         export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
+        # Force MQTT to be enabled when using the addon
+        export MQTT_ENABLED="true"
     fi
 elif [ -f "/config/homely-mqtt.yaml" ]; then
     echo "Reading configuration from /config/homely-mqtt.yaml..."
@@ -70,6 +74,8 @@ elif [ -f "/config/homely-mqtt.yaml" ]; then
     export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
     export HOMELY_USER=${HOMELY_USER:-""}
     export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
+    # Force MQTT to be enabled when using the addon
+    export MQTT_ENABLED="true"
 else
     echo "WARNING: No configuration file found, using environment variables..."
     # Fallback to environment variables
@@ -89,6 +95,8 @@ else
     export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
     export HOMELY_USER=${HOMELY_USER:-""}
     export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
+    # Force MQTT to be enabled when using the addon
+    export MQTT_ENABLED="true"
 fi
 
 # Map addon environment variables to what the source code expects
@@ -145,6 +153,7 @@ echo "Include Device Info: ${INCLUDE_DEVICE_INFO}"
 echo "Include Availability: ${INCLUDE_AVAILABILITY}"
 echo "Retain Discovery: ${RETAIN_DISCOVERY}"
 echo "Discovery Delay: ${DISCOVERY_DELAY}ms"
+echo "MQTT Enabled: ${MQTT_ENABLED:-"true"}"
 echo "Homely User: ${HOMELY_USER}"
 
 # Change to the homely-mqtt directory
