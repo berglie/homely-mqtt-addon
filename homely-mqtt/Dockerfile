@@ -10,15 +10,20 @@ RUN apt-get update && \
 # Update npm to latest version
 RUN npm install -g npm@11.5.2
 
-# Clone homely-mqtt and install locally
-RUN git clone https://github.com/yusijs/homely-mqtt.git /tmp/homely && \
-    cd /tmp/homely && \
+# Copy the source code
+COPY source/ /tmp/homely/
+
+# Build the TypeScript application
+RUN cd /tmp/homely && \
     npm install && \
-    npm link
+    npm run build
 
 # Copy run script and make it executable
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
+
+# Set working directory
+WORKDIR /tmp/homely
 
 # Set environment variables
 ENV NODE_ENV=production
