@@ -2,7 +2,7 @@
   "name": "Homely MQTT",
   "version": "1.0.19",
   "slug": "homely_mqtt",
-  "description": "Homely MQTT add-on for Home Assistant",
+  "description": "Homely MQTT add-on for Home Assistant with enhanced auto-discovery",
   "arch": ["amd64", "armv7", "aarch64"],
   "startup": "application",
   "boot": "auto",
@@ -20,6 +20,11 @@
     "log_level": "info",
     "auto_discovery": true,
     "discovery_prefix": "homeassistant",
+    "enhanced_auto_discovery": true,
+    "include_device_info": true,
+    "include_availability": true,
+    "retain_discovery": true,
+    "discovery_delay": 500,
     "homely_user": "",
     "homely_password": ""
   },
@@ -33,6 +38,11 @@
     "log_level": "list(debug|info|warn|error)",
     "auto_discovery": "bool",
     "discovery_prefix": "str",
+    "enhanced_auto_discovery": "bool",
+    "include_device_info": "bool",
+    "include_availability": "bool",
+    "retain_discovery": "bool",
+    "discovery_delay": "int(100,2000)",
     "homely_user": "str",
     "homely_password": "str"
   }

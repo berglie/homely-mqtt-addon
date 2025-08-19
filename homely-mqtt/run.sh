@@ -24,6 +24,11 @@ if [ -f "/data/options.json" ]; then
         export LOG_LEVEL=$(jq -r '.log_level // "info"' /data/options.json)
         export AUTO_DISCOVERY=$(jq -r '.auto_discovery // "true"' /data/options.json)
         export DISCOVERY_PREFIX=$(jq -r '.discovery_prefix // "homeassistant"' /data/options.json)
+        export ENHANCED_AUTO_DISCOVERY=$(jq -r '.enhanced_auto_discovery // "true"' /data/options.json)
+        export INCLUDE_DEVICE_INFO=$(jq -r '.include_device_info // "true"' /data/options.json)
+        export INCLUDE_AVAILABILITY=$(jq -r '.include_availability // "true"' /data/options.json)
+        export RETAIN_DISCOVERY=$(jq -r '.retain_discovery // "true"' /data/options.json)
+        export DISCOVERY_DELAY=$(jq -r '.discovery_delay // 500' /data/options.json)
         export HOMELY_USER=$(jq -r '.homely_user // ""' /data/options.json)
         export HOMELY_PASSWORD=$(jq -r '.homely_password // ""' /data/options.json)
     else
@@ -38,6 +43,11 @@ if [ -f "/data/options.json" ]; then
         export LOG_LEVEL=${LOG_LEVEL:-"info"}
         export AUTO_DISCOVERY=${AUTO_DISCOVERY:-"true"}
         export DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-"homeassistant"}
+        export ENHANCED_AUTO_DISCOVERY=${ENHANCED_AUTO_DISCOVERY:-"true"}
+        export INCLUDE_DEVICE_INFO=${INCLUDE_DEVICE_INFO:-"true"}
+        export INCLUDE_AVAILABILITY=${INCLUDE_AVAILABILITY:-"true"}
+        export RETAIN_DISCOVERY=${RETAIN_DISCOVERY:-"true"}
+        export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
         export HOMELY_USER=${HOMELY_USER:-""}
         export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
     fi
@@ -53,6 +63,11 @@ elif [ -f "/config/homely-mqtt.yaml" ]; then
     export LOG_LEVEL=${LOG_LEVEL:-"info"}
     export AUTO_DISCOVERY=${AUTO_DISCOVERY:-"true"}
     export DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-"homeassistant"}
+    export ENHANCED_AUTO_DISCOVERY=${ENHANCED_AUTO_DISCOVERY:-"true"}
+    export INCLUDE_DEVICE_INFO=${INCLUDE_DEVICE_INFO:-"true"}
+    export INCLUDE_AVAILABILITY=${INCLUDE_AVAILABILITY:-"true"}
+    export RETAIN_DISCOVERY=${RETAIN_DISCOVERY:-"true"}
+    export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
     export HOMELY_USER=${HOMELY_USER:-""}
     export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
 else
@@ -67,6 +82,11 @@ else
     export LOG_LEVEL=${LOG_LEVEL:-"info"}
     export AUTO_DISCOVERY=${AUTO_DISCOVERY:-"true"}
     export DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-"homeassistant"}
+    export ENHANCED_AUTO_DISCOVERY=${ENHANCED_AUTO_DISCOVERY:-"true"}
+    export INCLUDE_DEVICE_INFO=${INCLUDE_DEVICE_INFO:-"true"}
+    export INCLUDE_AVAILABILITY=${INCLUDE_AVAILABILITY:-"true"}
+    export RETAIN_DISCOVERY=${RETAIN_DISCOVERY:-"true"}
+    export DISCOVERY_DELAY=${DISCOVERY_DELAY:-500}
     export HOMELY_USER=${HOMELY_USER:-""}
     export HOMELY_PASSWORD=${HOMELY_PASSWORD:-""}
 fi
@@ -85,6 +105,11 @@ if [ -z "$HOMELY_USER" ]; then
     echo "  LOG_LEVEL: ${LOG_LEVEL}"
     echo "  AUTO_DISCOVERY: ${AUTO_DISCOVERY}"
     echo "  DISCOVERY_PREFIX: ${DISCOVERY_PREFIX}"
+    echo "  ENHANCED_AUTO_DISCOVERY: ${ENHANCED_AUTO_DISCOVERY}"
+    echo "  INCLUDE_DEVICE_INFO: ${INCLUDE_DEVICE_INFO}"
+    echo "  INCLUDE_AVAILABILITY: ${INCLUDE_AVAILABILITY}"
+    echo "  RETAIN_DISCOVERY: ${RETAIN_DISCOVERY}"
+    echo "  DISCOVERY_DELAY: ${DISCOVERY_DELAY}"
     echo "  HOMELY_USER: ${HOMELY_USER:-'NOT SET'}"
     echo "  HOMELY_PASSWORD: ${HOMELY_PASSWORD:-'NOT SET'}"
     exit 1
@@ -97,7 +122,7 @@ fi
 
 # Debug: Print all environment variables to see what's available
 echo "Available environment variables:"
-env | grep -E "(MQTT_|HOMELY_|LOG_|AUTO_|DISCOVERY_)" | sort
+env | grep -E "(MQTT_|HOMELY_|LOG_|AUTO_|DISCOVERY_|ENHANCED_|INCLUDE_|RETAIN_)" | sort
 echo ""
 
 # Check if options.json exists and show its contents for debugging
@@ -115,6 +140,11 @@ echo "Topic Prefix: ${MQTT_TOPIC_PREFIX}"
 echo "Log Level: ${LOG_LEVEL}"
 echo "Auto Discovery: ${AUTO_DISCOVERY}"
 echo "Discovery Prefix: ${DISCOVERY_PREFIX}"
+echo "Enhanced Auto Discovery: ${ENHANCED_AUTO_DISCOVERY}"
+echo "Include Device Info: ${INCLUDE_DEVICE_INFO}"
+echo "Include Availability: ${INCLUDE_AVAILABILITY}"
+echo "Retain Discovery: ${RETAIN_DISCOVERY}"
+echo "Discovery Delay: ${DISCOVERY_DELAY}ms"
 echo "Homely User: ${HOMELY_USER}"
 
 # Change to the homely-mqtt directory
