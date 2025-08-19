@@ -1,21 +1,10 @@
 ---
-# Build configuration for Homely MQTT Add-on
-# This file helps define the build process and environment variables
-
-# Build arguments
-args:
-  NODE_VERSION: "20"
-  NPM_VERSION: "11.5.2"
-
-# Environment variables that will be available during build
-environment:
-  - NODE_ENV=production
-  - HOMELY_MQTT_VERSION=1.0.19
-
-# Labels for the Docker image
-labels:
-  - "org.opencontainers.image.title=Homely MQTT Add-on"
-  - "org.opencontainers.image.description=MQTT add-on for Home Assistant"
-  - "org.opencontainers.image.version=1.0.19"
-  - "org.opencontainers.image.source=https://github.com/berglie/homely-mqtt-addon"
-  - "org.opencontainers.image.vendor=berglie"
+build_from:
+  aarch64: ghcr.io/home-assistant/aarch64-base:3.19
+  amd64: ghcr.io/home-assistant/amd64-base:3.19
+  armhf: ghcr.io/home-assistant/armhf-base:3.19
+  armv7: ghcr.io/home-assistant/armv7-base:3.19
+  i386: ghcr.io/home-assistant/i386-base:3.19
+codenotary:
+  signer: notary@home-assistant.io
+  base_image: notary@home-assistant.io
