@@ -6,9 +6,6 @@
   "arch": ["amd64", "armv7", "aarch64"],
   "startup": "application",
   "boot": "auto",
-  "ports": {
-    "1883/tcp": 1883
-  },
   "map": ["config"],
   "options": {
     "mqtt_broker_host": "localhost",
