@@ -22,7 +22,7 @@ RUN chmod +x /run.sh
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV HOMELY_MQTT_VERSION=1.0.15
+ENV HOMELY_MQTT_VERSION=1.0.16
 
 # Expose MQTT port
 EXPOSE 1883
