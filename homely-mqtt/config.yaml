@@ -1,15 +1,46 @@
-# Homely MQTT Add-on Configuration
-# Copy this file to /config/homely-mqtt.yaml in your Home Assistant instance
-# or configure through the add-on options in the Home Assistant UI
-
-mqtt_broker_host: "localhost"
-mqtt_broker_port: 1883
-mqtt_username: ""
-mqtt_password: ""
-mqtt_client_id: "homely_mqtt"
-mqtt_topic_prefix: "homely"
-log_level: "info"
-auto_discovery: true
-discovery_prefix: "homeassistant"
-homely_user: "your_homely_email@example.com"
-homely_password: "your_homely_password"
+---
+version: 1.0.19
+slug: homely_mqtt
+name: Homely MQTT
+description: MQTT add-on for Home Assistant using homely-mqtt
+url: https://github.com/berglie/homely-mqtt-addon
+codenotary: notary@home-assistant.io
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+hassio_api: true
+host_network: false
+image: homeassistant/{arch}-addon-homely-mqtt
+init: false
+startup: services
+ports:
+  1883/tcp: 1883
+map:
+  - config:rw
+options:
+  mqtt_broker_host: localhost
+  mqtt_broker_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_client_id: homely_mqtt
+  mqtt_topic_prefix: homely
+  log_level: info
+  auto_discovery: true
+  discovery_prefix: homeassistant
+  homely_user: ""
+  homely_password: ""
+schema:
+  mqtt_broker_host: str
+  mqtt_broker_port: port
+  mqtt_username: str
+  mqtt_password: str
+  mqtt_client_id: str
+  mqtt_topic_prefix: str
+  log_level: list(debug|info|warn|error)
+  auto_discovery: bool
+  discovery_prefix: str
+  homely_user: str
+  homely_password: str
