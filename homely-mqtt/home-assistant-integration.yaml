@@ -1,0 +1,63 @@
+# Home Assistant Integration Configuration for Homely MQTT Add-on
+# This file shows how to integrate the add-on with your Home Assistant setup
+
+# 1. Add the add-on repository to your Home Assistant configuration
+# In your configuration.yaml or add it through the UI:
+# Go to Settings > Add-ons > Add-on Store > ⋮ > Repositories
+# Add: https://github.com/berglie/homely-mqtt-addon
+
+# 2. Install the Homely MQTT add-on
+# Go to Settings > Add-ons > Add-on Store
+# Search for "Homely MQTT" and install it
+
+# 3. Configure the add-on
+# Go to Settings > Add-ons > Homely MQTT > Configuration
+# Set your MQTT broker details:
+# - MQTT Broker Host: Your MQTT broker IP (e.g., 192.168.1.100)
+# - MQTT Broker Port: Usually 1883
+# - Username/Password: If your broker requires authentication
+# - Topic Prefix: Choose a prefix for your topics (e.g., "homely")
+
+# 4. Start the add-on
+# Click "Start" in the add-on configuration
+
+# 5. Add MQTT integration to Home Assistant (if not already added)
+# Go to Settings > Devices & Services > Add Integration
+# Search for "MQTT" and add it
+# Configure with the same broker details as the add-on
+
+# 6. Example MQTT configuration in configuration.yaml:
+mqtt:
+  broker: 192.168.1.100  # Same as add-on configuration
+  port: 1883
+  username: your_username  # If required
+  password: your_password  # If required
+  discovery: true
+  discovery_prefix: homeassistant
+
+# 7. Example automations using homely-mqtt topics:
+automation:
+  - alias: "Homely Device Status Update"
+    trigger:
+      platform: mqtt
+      topic: "homely/+/status"  # Listen to status updates
+    action:
+      - service: notify.mobile_app
+        data:
+          title: "Device Update"
+          message: "{{ trigger.payload }}"
+
+# 8. Example sensors using homely-mqtt data:
+sensor:
+  - platform: mqtt
+    name: "Homely Device Count"
+    state_topic: "homely/devices/count"
+    unit_of_measurement: "devices"
+    
+  - platform: mqtt
+    name: "Homely System Status"
+    state_topic: "homely/system/status"
+    availability_topic: "homely/system/available"
+
+# Note: The actual topics and data structure depend on your homely-mqtt setup
+# Check the add-on logs for available topics and data format

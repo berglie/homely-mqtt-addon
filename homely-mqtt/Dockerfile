@@ -1,17 +1,31 @@
-# Bruk Node 20 som base
+# Use Node 20 as base
 FROM node:20-bullseye
 
-# Installer nødvendige pakker
+# Install necessary packages
 RUN apt-get update && \
     apt-get install -y git python3 python3-pip python3-dev build-essential g++ make libc6-dev bash curl && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
-# Oppdater npm til siste versjon
+# Update npm to latest version
 RUN npm install -g npm@11.5.2
 
-# Klon homely-mqtt og installer lokalt
+# Clone homely-mqtt and install locally
 RUN git clone https://github.com/yusijs/homely-mqtt.git /tmp/homely && \
     cd /tmp/homely && \
     npm install && \
     npm link
+
+# Copy run script and make it executable
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV HOMELY_MQTT_VERSION=1.0.15
+
+# Expose MQTT port
+EXPOSE 1883
+
+# Set the entrypoint to our run script
+ENTRYPOINT ["/run.sh"]

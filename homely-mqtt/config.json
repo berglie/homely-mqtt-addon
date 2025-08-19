@@ -10,6 +10,37 @@
     "1883/tcp": 1883
   },
   "map": ["config"],
-  "options": {},
-  "schema": {}
+  "options": {
+    "mqtt_broker_host": "localhost",
+    "mqtt_broker_port": 1883,
+    "mqtt_username": "",
+    "mqtt_password": "",
+    "mqtt_client_id": "homely_mqtt",
+    "mqtt_topic_prefix": "homely",
+    "log_level": "info",
+    "auto_discovery": true,
+    "discovery_prefix": "homeassistant"
+  },
+  "schema": {
+    "mqtt_broker_host": "str",
+    "mqtt_broker_port": "port",
+    "mqtt_username": "str",
+    "mqtt_password": "str",
+    "mqtt_client_id": "str",
+    "mqtt_topic_prefix": "str",
+    "log_level": "list(debug|info|warn|error)",
+    "auto_discovery": "bool",
+    "discovery_prefix": "str"
+  },
+  "environment": {
+    "MQTT_BROKER_HOST": "{{ options.mqtt_broker_host }}",
+    "MQTT_BROKER_PORT": "{{ options.mqtt_broker_port }}",
+    "MQTT_USERNAME": "{{ options.mqtt_username }}",
+    "MQTT_PASSWORD": "{{ options.mqtt_password }}",
+    "MQTT_CLIENT_ID": "{{ options.mqtt_client_id }}",
+    "MQTT_TOPIC_PREFIX": "{{ options.mqtt_topic_prefix }}",
+    "LOG_LEVEL": "{{ options.log_level }}",
+    "AUTO_DISCOVERY": "{{ options.auto_discovery }}",
+    "DISCOVERY_PREFIX": "{{ options.discovery_prefix }}"
+  }
 }
