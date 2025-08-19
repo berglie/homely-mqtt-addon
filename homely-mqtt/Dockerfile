@@ -30,5 +30,10 @@ COPY rootfs /
 # Set working directory
 WORKDIR /data/homely-mqtt
 
+# Copy source and install dependencies
+RUN cp -r /tmp/homely/* /data/homely-mqtt/ && \
+    npm install && \
+    npm run build
+
 # Expose MQTT port
 EXPOSE 1883

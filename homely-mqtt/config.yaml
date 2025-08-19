@@ -13,7 +13,7 @@ arch:
   - i386
 hassio_api: true
 host_network: false
-image: homeassistant/{arch}-addon-homely-mqtt
+image: local/{arch}-addon-homely-mqtt
 init: false
 startup: services
 ports:

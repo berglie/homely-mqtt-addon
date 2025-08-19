@@ -21,15 +21,10 @@ bashio::log.info "  Homely User: $(bashio::config 'homely_user')"
 # Create configuration directory
 mkdir -p /data/homely-mqtt
 
-# Copy source code to working directory
-cp -r /tmp/homely/* /data/homely-mqtt/
-
-# Install dependencies and build
-cd /data/homely-mqtt
-bashio::log.info "Installing dependencies..."
-npm install
-bashio::log.info "Building application..."
-npm run build
+# Copy source code to working directory (if not already done in Dockerfile)
+if [ ! -f /data/homely-mqtt/package.json ]; then
+    cp -r /tmp/homely/* /data/homely-mqtt/
+fi
 
 # Set environment variables for the application
 export MQTT_BROKER_HOST=$(bashio::config 'mqtt_broker_host')
