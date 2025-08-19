@@ -16,6 +16,6 @@ environment:
 labels:
   - "org.opencontainers.image.title=Homely MQTT Add-on"
   - "org.opencontainers.image.description=MQTT add-on for Home Assistant"
-  - "org.opencontainers.image.version=1.0.15"
+  - "org.opencontainers.image.version=1.0.17"
   - "org.opencontainers.image.source=https://github.com/berglie/homely-mqtt-addon"
   - "org.opencontainers.image.vendor=berglie"
