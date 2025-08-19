@@ -1,0 +1,15 @@
+# Homely MQTT Add-on Configuration
+# Copy this file to /config/homely-mqtt.yaml in your Home Assistant instance
+# or configure through the add-on options in the Home Assistant UI
+
+mqtt_broker_host: "localhost"
+mqtt_broker_port: 1883
+mqtt_username: ""
+mqtt_password: ""
+mqtt_client_id: "homely_mqtt"
+mqtt_topic_prefix: "homely"
+log_level: "info"
+auto_discovery: true
+discovery_prefix: "homeassistant"
+homely_user: "your_homely_email@example.com"
+homely_password: "your_homely_password"

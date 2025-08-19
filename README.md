@@ -24,6 +24,8 @@ This add-on provides MQTT functionality for Home Assistant using the [homely-mqt
 | `log_level` | `info` | Log level (debug, info, warn, error) |
 | `auto_discovery` | `true` | Enable Home Assistant MQTT discovery |
 | `discovery_prefix` | `homeassistant` | MQTT discovery prefix |
+| `homely_user` | `""` | **REQUIRED**: Your Homely account email/username |
+| `homely_password` | `""` | **REQUIRED**: Your Homely account password |
 
 ### Environment Variables
 
@@ -38,6 +40,8 @@ The following environment variables can be set:
 - `LOG_LEVEL`: Log level
 - `AUTO_DISCOVERY`: Enable/disable auto discovery
 - `DISCOVERY_PREFIX`: MQTT discovery prefix
+- `HOMELY_USER`: **REQUIRED**: Your Homely account email/username
+- `HOMELY_PASSWORD`: **REQUIRED**: Your Homely account password
 
 ## Usage
 
@@ -48,12 +52,62 @@ After starting the add-on, it will:
 3. Handle MQTT messages for device control
 4. Provide real-time status updates
 
+## Configuration Examples
+
+### Home Assistant Add-on Options (Recommended)
+
+Configure through the Home Assistant UI:
+1. Go to **Settings** > **Add-ons** > **Homely MQTT** > **Configuration**
+2. Fill in all required fields, especially `homely_user` and `homely_password`
+3. Click **Save** and restart the add-on
+
+### Manual Configuration File
+
+Create `/config/homely-mqtt.yaml` in your Home Assistant config directory:
+
+```yaml
+mqtt_broker_host: "192.168.1.100"
+mqtt_broker_port: 1883
+mqtt_username: "mqtt_user"
+mqtt_password: "mqtt_password"
+mqtt_client_id: "homely_mqtt"
+mqtt_topic_prefix: "homely"
+log_level: "info"
+auto_discovery: true
+discovery_prefix: "homeassistant"
+homely_user: "your_email@example.com"
+homely_password: "your_password"
+```
+
 ## Troubleshooting
 
-- Check the add-on logs for connection errors
-- Verify your MQTT broker settings
-- Ensure your MQTT broker is accessible from the Home Assistant host
-- Check that the required ports are open
+### Common Issues
+
+- **"HOMELY_USER is not defined"**: Make sure you have configured both `homely_user` and `homely_password` in the add-on options
+- **"HOMELY_PASSWORD is not defined"**: Ensure both Homely credentials are set in the add-on configuration
+- **Connection errors**: Check your MQTT broker settings and ensure it's accessible from the Home Assistant host
+- **Configuration not loading**: The add-on reads configuration from `/data/options.json` (Home Assistant managed) or `/config/homely-mqtt.yaml` (manual)
+
+### Configuration Priority
+
+The add-on reads configuration in this order:
+1. `/data/options.json` (Home Assistant add-on options)
+2. `/config/homely-mqtt.yaml` (manual configuration file)
+3. Environment variables (fallback)
+
+### Required Configuration
+
+**You must configure these options for the add-on to work:**
+- `homely_user`: Your Homely account email/username
+- `homely_password`: Your Homely account password
+
+### Debug Information
+
+The add-on will display:
+- Available environment variables
+- Configuration file contents (if found)
+- Current configuration values
+- Detailed error messages for missing required values
 
 ## Support
 
