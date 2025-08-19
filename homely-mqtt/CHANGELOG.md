@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.19] - 2024-01-XX
+## [2.0.0] - 2024-01-XX
 
 ### Changed
 - **BREAKING**: Complete rewrite to follow official Home Assistant addon structure
@@ -28,9 +28,15 @@
 - Configuration automatically read from Home Assistant addon options
 - No manual environment variable configuration needed
 
-## [1.0.18] - Previous versions
+## [1.0.19] - Previous versions
 
 ### Changed
 - Initial addon implementation
 - Basic MQTT functionality
 - Manual configuration handling
+
+## [1.0.18] - Earlier versions
+
+### Changed
+- Basic addon structure
+- Initial development
