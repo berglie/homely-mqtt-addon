@@ -3,7 +3,7 @@ FROM node:20-bullseye
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git python3 python3-pip python3-dev build-essential g++ make libc6-dev bash curl && \
+    apt-get install -y git python3 python3-pip python3-dev build-essential g++ make libc6-dev bash curl jq && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
