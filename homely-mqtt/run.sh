@@ -16,6 +16,11 @@ export LOG_LEVEL=${LOG_LEVEL:-"info"}
 export AUTO_DISCOVERY=${AUTO_DISCOVERY:-"true"}
 export DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-"homeassistant"}
 
+# Map addon environment variables to what the source code expects
+export MQTT_HOST="mqtt://${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}"
+export HOMELY_USER=${HOMELY_USER:-"your_homely_username"}
+export HOMELY_PASSWORD=${HOMELY_PASSWORD:-"your_homely_password"}
+
 # Log configuration
 echo "Starting Homely MQTT Add-on with configuration:"
 echo "MQTT Broker: ${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}"
@@ -24,10 +29,11 @@ echo "Topic Prefix: ${MQTT_TOPIC_PREFIX}"
 echo "Log Level: ${LOG_LEVEL}"
 echo "Auto Discovery: ${AUTO_DISCOVERY}"
 echo "Discovery Prefix: ${DISCOVERY_PREFIX}"
+echo "Homely User: ${HOMELY_USER}"
 
 # Change to the homely-mqtt directory
 cd /tmp/homely
 
 # Start the application
 echo "Starting homely-mqtt application..."
-exec node index.js
+exec node dist/index.js

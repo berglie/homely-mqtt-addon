@@ -19,7 +19,9 @@
     "mqtt_topic_prefix": "homely",
     "log_level": "info",
     "auto_discovery": true,
-    "discovery_prefix": "homeassistant"
+    "discovery_prefix": "homeassistant",
+    "homely_user": "",
+    "homely_password": ""
   },
   "schema": {
     "mqtt_broker_host": "str",
@@ -30,7 +32,9 @@
     "mqtt_topic_prefix": "str",
     "log_level": "list(debug|info|warn|error)",
     "auto_discovery": "bool",
-    "discovery_prefix": "str"
+    "discovery_prefix": "str",
+    "homely_user": "str",
+    "homely_password": "str"
   },
   "environment": {
     "MQTT_BROKER_HOST": "{{ options.mqtt_broker_host }}",
@@ -41,6 +45,8 @@
     "MQTT_TOPIC_PREFIX": "{{ options.mqtt_topic_prefix }}",
     "LOG_LEVEL": "{{ options.log_level }}",
     "AUTO_DISCOVERY": "{{ options.auto_discovery }}",
-    "DISCOVERY_PREFIX": "{{ options.discovery_prefix }}"
+    "DISCOVERY_PREFIX": "{{ options.discovery_prefix }}",
+    "HOMELY_USER": "{{ options.homely_user }}",
+    "HOMELY_PASSWORD": "{{ options.homely_password }}"
   }
 }

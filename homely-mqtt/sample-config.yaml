@@ -12,11 +12,15 @@ homely_mqtt:
   log_level: "info"                   # Log level: debug, info, warn, error
   auto_discovery: true                # Enable Home Assistant MQTT discovery
   discovery_prefix: "homeassistant"   # MQTT discovery prefix
+  homely_user: "your_homely_email"    # Your Homely account email/username
+  homely_password: "your_homely_password"  # Your Homely account password
 
 # Alternative: Minimal configuration
 # homely_mqtt:
 #   mqtt_broker_host: "localhost"
 #   mqtt_broker_port: 1883
+#   homely_user: "your_homely_email"
+#   homely_password: "your_homely_password"
 
 # Note: If you're using the add-on UI in Home Assistant,
 # you can configure these options through the add-on configuration panel
