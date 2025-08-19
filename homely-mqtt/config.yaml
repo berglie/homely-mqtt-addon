@@ -1,4 +1,5 @@
 # Homely MQTT Add-on Configuration
+# Version: 1.1.2 - Fixed port conflict with MQTT broker
 # Copy this file to /config/homely-mqtt.yaml in your Home Assistant instance
 # or configure through the add-on options in the Home Assistant UI
 
