@@ -35,18 +35,5 @@
     "discovery_prefix": "str",
     "homely_user": "str",
     "homely_password": "str"
-  },
-  "environment": {
-    "MQTT_BROKER_HOST": "{{ options.mqtt_broker_host }}",
-    "MQTT_BROKER_PORT": "{{ options.mqtt_broker_port }}",
-    "MQTT_USERNAME": "{{ options.mqtt_username }}",
-    "MQTT_PASSWORD": "{{ options.mqtt_password }}",
-    "MQTT_CLIENT_ID": "{{ options.mqtt_client_id }}",
-    "MQTT_TOPIC_PREFIX": "{{ options.mqtt_topic_prefix }}",
-    "LOG_LEVEL": "{{ options.log_level }}",
-    "AUTO_DISCOVERY": "{{ options.auto_discovery }}",
-    "DISCOVERY_PREFIX": "{{ options.discovery_prefix }}",
-    "HOMELY_USER": "{{ options.homely_user }}",
-    "HOMELY_PASSWORD": "{{ options.homely_password }}"
   }
 }
