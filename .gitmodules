@@ -1,0 +1,3 @@
+[submodule "homely-mqtt/source"]
+	path = homely-mqtt/source
+	url = https://github.com/yusijs/homely-mqtt.git
