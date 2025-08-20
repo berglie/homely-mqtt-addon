@@ -10,12 +10,12 @@ args:
 # Environment variables that will be available during build
 environment:
   - NODE_ENV=production
-          - HOMELY_MQTT_VERSION=1.1.4
+          - HOMELY_MQTT_VERSION=1.1.5
 
 # Labels for the Docker image
 labels:
   - "org.opencontainers.image.title=Homely MQTT Add-on"
   - "org.opencontainers.image.description=MQTT add-on for Home Assistant with enhanced auto-discovery"
-          - "org.opencontainers.image.version=1.1.4"
+          - "org.opencontainers.image.version=1.1.5"
   - "org.opencontainers.image.source=https://github.com/berglie/homely-mqtt-addon"
   - "org.opencontainers.image.vendor=berglie"

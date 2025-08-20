@@ -1,6 +1,6 @@
 {
   "name": "Homely MQTT",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "slug": "homely_mqtt",
   "description": "Homely MQTT add-on for Home Assistant with enhanced auto-discovery and fixed MQTT discovery issues",
   "arch": ["amd64", "armv7", "aarch64"],
