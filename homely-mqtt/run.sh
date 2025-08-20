@@ -102,16 +102,40 @@ fi
 # Map addon environment variables to what the source code expects
 export MQTT_HOST="mqtt://${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}"
 
-# Create a minimal config override to enable MQTT
-# This only overrides the specific values that need to change
-echo "Creating minimal MQTT config override..."
+# Create a complete config override with all settings
+echo "Creating complete configuration override..."
 mkdir -p /tmp/homely/config
 cat > /tmp/homely/config/local.yml << EOF
+database:
+  logLevel: ${LOG_LEVEL:-info}
+  reset: false
+  connection:
+    username: user
+    password: password
+    storage: db.sqlite
+    host: localhost
+    dialect: sqlite
+
 mqtt:
   enabled: true
+  qos: ${MQTT_QOS:-1}
+  host: mqtt://${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}
+  user: ${MQTT_USERNAME:-homely}
+  entityPrefix: ${MQTT_TOPIC_PREFIX:-homely}
+  topicPrefixes:
+    config: ${DISCOVERY_PREFIX:-homeassistant}
+    state: ${MQTT_TOPIC_PREFIX:-homely}
+
+homely:
+  host: sdk.iotiliti.cloud
+
+logLevel: ${LOG_LEVEL:-info}
+
+polling:
+  schedule: "*/5 * * * *"
 EOF
 
-echo "Config override created:"
+echo "Complete configuration created:"
 cat /tmp/homely/config/local.yml
 
 # Validate required configuration
