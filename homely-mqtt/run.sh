@@ -159,6 +159,41 @@ echo "Homely User: ${HOMELY_USER}"
 # Change to the homely-mqtt directory
 cd /tmp/homely
 
+# Create a custom config file to override the default settings
+echo "Creating custom configuration to enable MQTT..."
+cat > config/local.yml << EOF
+database:
+  logLevel: ${LOG_LEVEL:-info}
+  reset: false
+  connection:
+    username: user
+    password: password
+    storage: db.sqlite
+    host: localhost
+    dialect: sqlite
+
+mqtt:
+  enabled: true
+  qos: 1
+  host: mqtt://${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}
+  user: ${MQTT_USERNAME:-homely}
+  entityPrefix: ${MQTT_TOPIC_PREFIX:-homely}
+  topicPrefixes:
+    config: ${DISCOVERY_PREFIX:-homeassistant}
+    state: ${MQTT_TOPIC_PREFIX:-homely}
+
+homely:
+  host: sdk.iotiliti.cloud
+
+logLevel: ${LOG_LEVEL:-info}
+
+polling:
+  schedule: "*/5 * * * *"
+EOF
+
+echo "Custom configuration created:"
+cat config/local.yml
+
 # Start the application
 echo "Starting homely-mqtt application..."
 exec node dist/index.js
