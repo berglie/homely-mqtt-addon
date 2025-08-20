@@ -27,11 +27,11 @@ RUN npm run build
 COPY source/config/ /app/dist/config/
 
 # Copy run script and make it executable
-COPY run.sh /run.sh
+COPY source/run.sh /run.sh
 RUN chmod +x /run.sh
 
-# Set working directory
-WORKDIR /tmp/homely
+# Set working directory to app directory (not /tmp/homely)
+WORKDIR /app
 
 # Set environment variables
 ENV NODE_ENV=production
