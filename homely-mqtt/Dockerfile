@@ -1,22 +1,30 @@
-# Use Node 20 as base
-FROM node:20-bullseye
+FROM node:18-alpine
 
-# Install necessary packages
-RUN apt-get update && \
-    apt-get install -y git python3 python3-pip python3-dev build-essential g++ make libc6-dev bash curl jq && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    rm -rf /var/lib/apt/lists/*
+ARG TARGETPLATFORM
+# Create app directory
+WORKDIR /app
 
-# Update npm to latest version
-RUN npm install -g npm@11.5.2
+# Copy package-install.sh
+COPY source/package-install.sh ./
 
-# Copy the source code
-COPY source/ /tmp/homely/
+# Install build-dependencies on armv7 (not required on arm64)
+ENV PYTHONUNBUFFERED=1
+RUN ./package-install.sh
 
-# Build the TypeScript application
-RUN cd /tmp/homely && \
-    npm install && \
-    npm run build
+# Copy package.json and package-lock.json
+COPY source/package*.json ./
+
+# Install dependencies
+RUN npm install --sqlite=/usr/local
+
+# Copy app source code
+COPY source/ .
+
+# Build
+RUN npm run build
+
+# Copy configuration
+COPY source/config/ /app/dist/config/
 
 # Copy run script and make it executable
 COPY run.sh /run.sh
@@ -27,7 +35,7 @@ WORKDIR /tmp/homely
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV HOMELY_MQTT_VERSION=1.1.1
+ENV HOMELY_MQTT_VERSION=1.1.3
 
 # Expose MQTT port
 EXPOSE 1883
