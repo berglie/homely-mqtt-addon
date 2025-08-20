@@ -1,7 +1,6 @@
 # Homely MQTT Add-on Configuration
-# Version: 1.1.2 - Fixed port conflict with MQTT broker
-# Copy this file to /config/homely-mqtt.yaml in your Home Assistant instance
-# or configure through the add-on options in the Home Assistant UI
+# Version: 1.1.3 - Using source repo configuration
+# This file configures the addon options in Home Assistant
 
 mqtt_broker_host: "localhost"
 mqtt_broker_port: 1883
