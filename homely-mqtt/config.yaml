@@ -1,5 +1,5 @@
 # Homely MQTT Add-on Configuration
-# Version: 1.1.3 - Using source repo configuration
+# Version: 1.1.4 - Using source repo configuration
 # This file configures the addon options in Home Assistant
 
 mqtt_broker_host: "localhost"
