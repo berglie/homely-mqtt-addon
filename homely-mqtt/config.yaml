@@ -1,0 +1,30 @@
+name: "Homely MQTT Add-on"
+version: "1.0.0"
+slug: "homely_mqtt_addon"
+description: "Homely MQTT add-on for Home Assistant with enhanced auto-discovery and fixed MQTT discovery issues"
+url: "https://github.com/berglie/homely-mqtt-addon"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+startup: application
+boot: auto
+services:
+  - mqtt:need
+init: false
+options:
+  HOMELY_USER: ""
+  HOMELY_PASSWORD: ""
+  MQTT_HOST: "core-mosquitto"
+  MQTT_PORT: 1883
+  MQTT_USER: ""
+  MQTT_PASSWORD: ""
+schema:
+  HOMELY_USER: str
+  HOMELY_PASSWORD: password
+  MQTT_HOST: str
+  MQTT_PORT: int
+  MQTT_USER: str
+  MQTT_PASSWORD: password
